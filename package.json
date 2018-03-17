@@ -4,6 +4,6 @@
   "author": "Vladislav Marchenko <marlock@etlgr.com> (https://github.com/KaMeHb-UA)",
   "main": "main.js",
   "dependencies": {
-    "node-object-private-props": "git+https://github.com/KaMeHb-UA/node-object-private-props.git"
+    "node-object-private-props": "git+https://github.com/KaMeHb-UA/node-object-private-props.git#f1c6b531613bc27a6f49e14491b077fa2682fae0"
   }
 }
