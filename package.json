@@ -1,9 +1,11 @@
 {
-  "name": "lenode",
-  "version": "3.0.0-a1",
-  "author": "Vladislav Marchenko <marlock@etlgr.com> (https://github.com/KaMeHb-UA)",
-  "main": "main.js",
-  "dependencies": {
-    "node-object-private-props": "git+https://github.com/KaMeHb-UA/node-object-private-props.git#f1c6b531613bc27a6f49e14491b077fa2682fae0"
-  }
+    "name": "lenode",
+    "version": "3.0.0-a1",
+    "author": "Vladislav Marchenko <marlock@etlgr.com> (https://github.com/KaMeHb-UA)",
+    "main": "main.js",
+    "dependencies": {
+        "node-object-private-props": "git+https://github.com/KaMeHb-UA/node-object-private-props.git#f1c6b531613bc27a6f49e14491b077fa2682fae0",
+        "bluebird": "^3.5.1",
+        "async-require": "^1.2.2"
+    }
 }
