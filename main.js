@@ -6,6 +6,26 @@ function genetateANSIColor(color, string, background){
 function normalizeTime(tnum){
     return tnum < 10 ? `0${tnum}` : tnum
 }
+function checkType(variable, type, checkProto = true){
+    if (
+        type === variable || // for undefined too
+        (
+            type.name &&
+            type.name.toLowerCase &&
+            type.name.toLowerCase.apply &&
+            ((typeof variable)[0].toUpperCase() + (typeof variable).slice(1)) == type.name
+        ) ||
+        (
+            type.isPrototypeOf &&
+            type.isPrototypeOf.apply &&
+            type.isPrototypeOf(variable)
+        ) || (
+            (type.prototype || type.__proto__.constructor) &&
+            checkProto &&
+            checkType(variable, type.prototype || type.__proto__.constructor, false)
+        )
+    ) return true; else return false;
+}
 class LeNode{
     constructor(settings){
         if(!settings.router) throw new ReferenceError('settings.router is not defined');
@@ -32,7 +52,9 @@ class LeNode{
     }
     start(port){
         var settings = getPrivate(this, 'settings');
-        // ROUTES THERE
+        settings.router.forEach(site => {
+            if(typeof site.domain != 'object' || RegExp.$1 || typeof site.domain != 'string')
+        });
     }
 }
 class Site{
