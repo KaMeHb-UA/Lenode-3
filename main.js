@@ -33,9 +33,10 @@ class LeNode{
     }
     start(port){
         var settings = getPrivate(this, 'settings');
+        if (!checkType(settings.router, Array)) throw new TypeError('router is not configured propertly');
         settings.router.forEach(site => {
             if (!checkType(site.domain, RegExp) || !checkType(site.folder, String)){
-                // not
+                throw new TypeError('router is not configured propertly')
             }
         });
     }
