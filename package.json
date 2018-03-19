@@ -6,6 +6,7 @@
     "dependencies": {
         "node-object-private-props": "git+https://github.com/KaMeHb-UA/node-object-private-props.git#f1c6b531613bc27a6f49e14491b077fa2682fae0",
         "bluebird": "^3.5.1",
-        "async-require": "^1.2.2"
+        "async-require": "^1.2.2",
+        "type-checker": "git+https://github.com/KaMeHb-UA/type-checker.git#b6c79f2bf25caaa7ade3387db12218cc5c33f249"
     }
 }
