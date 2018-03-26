@@ -2,6 +2,8 @@
   "name": "lenode-test-server",
   "version": "0.0.0-a1",
   "author": "Vladislav Marchenko <marlock@etlgr.com> (https://github.com/KaMeHb-UA)",
-  "main": "main.js",
+  "scripts": {
+    "start": "node --inspect main.js"
+  },
   "dependencies": {}
 }
