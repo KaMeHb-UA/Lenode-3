@@ -34,9 +34,19 @@ class LeNode{
     start(port){
         var settings = getPrivate(this, 'settings');
         if (!checkType(settings.router, Array)) throw new TypeError('router is not configured propertly');
+        var addSite = (exp, site) => {
+            var tpmStack = getPrivate(this, 'siteStack') || [];
+            tpmStack.push({
+                domain: exp,
+                site
+            });
+            setPrivate(this, 'siteStack', tpmStack);
+        }
         settings.router.forEach(site => {
             if (!checkType(site.domain, RegExp) || !checkType(site.folder, String)){
                 throw new TypeError('router is not configured propertly')
+            } else {
+                addSite(site.domain, require(site.folder));
             }
         });
     }
