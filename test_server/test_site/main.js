@@ -5,7 +5,7 @@ class myTestSite extends Site{
     constructor(settings){
         super(settings)
     }
-    getPage(address, {POST, GET, REQUEST, COOKIE, port, protocol, fullAddress}){
+    getPage({address, method, POST, GET, REQUEST, COOKIE, port, protocol, fullAddress, headers, response}){
         return new Promise((resolve, reject) => {
             resolve(JSON.stringify(arguments));
         })
