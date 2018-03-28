@@ -102,8 +102,8 @@ class LeNode{
                     res.statusCode = 500;
                     setHead('Content-Type', 'text/html; charset=utf-8');
                     res.end(`<html><head><meta charset="utf-8"></head><body>Internal server error.${
-                        process.env.NODE_ENV == 'dev' ? `<br/>Error stack:<hr><pre>${err.stack}</pre>` : ''
-                    }<hr>LeNode server ${pkg.version}</body></html>`);
+                        process.env.NODE_ENV == 'dev' ? `<br/>Error stack:<hr><div style="overflow:auto;"><pre>${err.stack}</pre></div>` : ''
+                    }<hr><h3 style="text-align:center;">LeNode server ${pkg.version}</h3></body></html>`);
                 })
             }
             //this.logger.log({req, res})
