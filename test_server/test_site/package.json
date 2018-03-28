@@ -3,5 +3,7 @@
   "version": "0.0.0-a1",
   "author": "Vladislav Marchenko <marlock@etlgr.com> (https://github.com/KaMeHb-UA)",
   "main": "main.js",
-  "dependencies": {}
+  "dependencies": {
+    "bluebird": "^3.5.1"
+  }
 }

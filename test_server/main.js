@@ -1,9 +1,9 @@
-const {LeNode} = require('..');
+const {LeNode} = require(__dirname + '/..');
 new LeNode({
     router: [
         {
-            host: /localhost/,
-            folder: 'test_site'
+            domain: /localhost/,
+            folder: '/home/superuser/Документы/GitHub/Lenode-3/test_server/test_site'
         },
     ],
 }).start(8080);

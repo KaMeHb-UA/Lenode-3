@@ -19,7 +19,7 @@ npm manifest:
     "version": "0.0.0-a1",
     "author": "Vladislav Marchenko <marlock@etlgr.com> (https://github.com/KaMeHb-UA)",
     "scripts": {
-      "start": "node --inspect main.js"
+      "start": "NODE_ENV=dev node main.js"
     },
     "dependencies": {}
   }
@@ -32,9 +32,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit signal: SIGINT
   Command: sh
-  Arguments: -c node --inspect main.js
+  Arguments: -c NODE_ENV=dev node main.js
   Directory: /home/superuser/Документы/GitHub/Lenode-3/test_server
   Output:
   
