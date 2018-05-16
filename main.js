@@ -62,7 +62,7 @@ class LeNode{
             });
             setPrivate(this, 'siteStack', tpmStack);
         }
-        http.createServer((req, res) => {
+        http.createServer(async (req, res) => {
             var [host] = (req.headers.host || '').split(':'),
                 [address, GETparams] = (req.url || '').split('?'),
                 site = null,
@@ -74,37 +74,38 @@ class LeNode{
                 if(!site && sitedef.domain.test(host)) site = sitedef.site;
             });
             if (site){
-                site.getPage({
-                    address,
-                    method: req.method,
-                    POST: (req.method != 'POST' ? null : {}),
-                    GET: (getArr => {
-                        var res = {};
-                        getArr.forEach(getArg => {
-                            getArg = getArg.split('=');
-                            res[decodeURIComponent(getArg.shift())] = decodeURIComponent(getArg.join('='));
-                        })
-                        return res;
-                    })((GETparams || '').split('&')),
-                    REQUEST: {},
-                    COOKIE: {},
-                    port,
-                    protocol,
-                    fullAddress: `${protocol}://${req.headers.host}${req.url}`,
-                    headers: req.headers,
-                    response: res
-                }).then(({result, code}) => {
+                try{
+                    let {result, code} = await site.getPage({
+                        address,
+                        method: req.method,
+                        POST: (req.method != 'POST' ? null : {}),
+                        GET: (getArr => {
+                            var res = {};
+                            getArr.forEach(getArg => {
+                                getArg = getArg.split('=');
+                                res[decodeURIComponent(getArg.shift())] = decodeURIComponent(getArg.join('='));
+                            })
+                            return res;
+                        })((GETparams || '').split('&')),
+                        REQUEST: {},
+                        COOKIE: {},
+                        port,
+                        protocol,
+                        fullAddress: `${protocol}://${req.headers.host}${req.url}`,
+                        headers: req.headers,
+                        response: res
+                    });
                     res.statusCode = code || 200;
                     setHead('Content-Type', 'text/html; charset=utf-8');
-                    res.end(result);
-                }).catch(err => {
+                    res.end(result)
+                } catch (err){
                     this.logger.err(err);
                     res.statusCode = 500;
                     setHead('Content-Type', 'text/html; charset=utf-8');
                     res.end(`<html><head><meta charset="utf-8"></head><body>Internal server error.${
                         process.env.NODE_ENV == 'dev' ? `<br/>Error stack:<hr><div style="overflow:auto;"><pre>${err.stack}</pre></div>` : ''
                     }<hr><h3 style="text-align:center;">LeNode server ${pkg.version}</h3></body></html>`);
-                })
+                }
             }
             //this.logger.log({req, res})
         }).listen(port);
