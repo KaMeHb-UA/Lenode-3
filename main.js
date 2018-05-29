@@ -93,7 +93,11 @@ class LeNode{
                         protocol,
                         fullAddress: `${protocol}://${req.headers.host}${req.url}`,
                         headers: req.headers,
-                        response: res
+                        response: res,
+                        clientIP: req.headers['x-forwarded-for'] ||
+                            req.connection.remoteAddress ||
+                            req.socket.remoteAddress ||
+                            (req.connection.socket ? req.connection.socket.remoteAddress : null)
                     });
                     res.statusCode = code || 200;
                     setHead('Content-Type', 'text/html; charset=utf-8');
